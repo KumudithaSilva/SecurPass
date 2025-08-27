@@ -1,0 +1,10 @@
+[project]
+name = "SecurPass"
+version = "0.1.0"
+authors = [
+    { name="Kumuitha Silva", email="kumudithasilva66@gmail.com" }
+]
+description = "Local password manager and generator built with Python"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
