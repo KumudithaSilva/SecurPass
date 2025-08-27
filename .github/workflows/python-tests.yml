@@ -27,11 +27,15 @@ jobs:
       run: |
         pytest tests/test_main.py
 
-  deploy:
+  sonarqube:
     runs-on: ubuntu-latest
     needs: test
     steps:
-    - uses: actions/checkout@v3
-    - name: Run main.py
-      run: |
-        python securpass/main.py
+      - uses: actions/checkout@v3
+
+      - name: SonarCloud Scan
+        uses: sonarsource/sonarcloud-github-action@v2
+        with:
+          projectKey: securpass
+          organization: KumudithaSilva
+          projectName: SecurPass
