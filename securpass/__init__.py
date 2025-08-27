@@ -1,0 +1,7 @@
+__version__ = "0.1.0"
+__author__ = "Kumuditha Silva"
+__email__ = "kumudithasilva66@gmail.com"
+__license__ = "MIT"
+__status__ = "Development"
+__url__ = "https://github.com/KumudithaSilva/SecurPass"
+__description__ = "Local password manager & generator built with Python"
