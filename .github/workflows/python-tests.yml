@@ -36,6 +36,8 @@ jobs:
       - name: SonarCloud Scan
         uses: sonarsource/sonarcloud-github-action@v2
         with:
-          projectKey: securpass
-          organization: KumudithaSilva
-          projectName: SecurPass
+          entryPoint: sonar-scanner
+          args: >
+            -Dsonar.projectKey=securpass
+            -Dsonar.organization=your-github-username
+            -Dsonar.host.url=https://sonarcloud.io
