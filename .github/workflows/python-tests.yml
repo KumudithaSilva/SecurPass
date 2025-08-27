@@ -28,7 +28,7 @@ jobs:
         pytest tests/test_main.py
 
     - name: SonarCloud Scan
-      uses: SonarSource/sonarcloud-github-action@v1.12
+      uses: SonarSource/sonarcloud-github-action@v2.2.0
       with:
         organization: ${{ secrets.SONAR_ORGANIZATION }}
         projectKey: ${{ secrets.SONAR_PROJECT_KEY }}
