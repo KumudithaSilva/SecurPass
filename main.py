@@ -10,7 +10,7 @@ def main():
         "main_logo": loader.load_image("securepass.png"),
         "main_icon": loader.load_icon("securepass.ico")
     }
-    app = SecureUI(root, images)
+    SecureUI(root, images)
     root.mainloop()
 
 
