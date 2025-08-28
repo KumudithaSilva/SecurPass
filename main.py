@@ -2,7 +2,6 @@ from tkinter import Tk
 from securpass.resources import ResourceLoader
 from securpass.ui import SecureUI
 
-
 def main():
     root = Tk()
     loader = ResourceLoader()
