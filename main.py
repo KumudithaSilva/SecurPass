@@ -6,6 +6,7 @@ from securpass.ui import SecureUI
 def main():
     root = Tk()
     loader = ResourceLoader()
+
     images = {
         "main_logo": loader.load_image("securepass.png"),
         "main_icon": loader.load_icon("securepass.ico")
