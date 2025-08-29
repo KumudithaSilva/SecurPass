@@ -31,8 +31,5 @@ class SecureUI:
         self.canvas.place(relx=0.5, y=10, anchor="n")
 
         # Initial logo images
-        self.main_logo = self.canvas.create_image(100, 100, image=images["main_logo"])
-
-
-
-
+        self.main_logo = (self.canvas.create_image
+                          (100, 100, image=images["main_logo"]))

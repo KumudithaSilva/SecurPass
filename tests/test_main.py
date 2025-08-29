@@ -1,5 +1,3 @@
-import pytest
-
 def test_password_generation_placeholder():
     """
     Placeholder test for password generation.
