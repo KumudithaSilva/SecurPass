@@ -3,12 +3,13 @@ from tkinter import Canvas, Label, Entry, Button
 
 class SecureUI:
     """
-        A class to manage and display task-related UI components using Tkinter.
+    A class to manage and display task-related UI components using Tkinter.
 
-        Attributes:
-            root (Tk): The main application window.
-            images (dict): A dictionary containing Tkinter PhotoImage objects.
-        """
+    Attributes:
+        root (Tk): The main application window.
+        images (dict): A dictionary containing Tkinter PhotoImage objects.
+    """
+
     BG_COLOR = "#ffffff"
     FIELD_WIDTH = 45
 
@@ -29,11 +30,7 @@ class SecureUI:
 
         # Canvas for logo
         self.canvas = Canvas(
-            root,
-            width=200,
-            height=200,
-            bg=self.BG_COLOR,
-            highlightthickness=0
+            root, width=200, height=200, bg=self.BG_COLOR, highlightthickness=0
         )
         self.canvas.create_image(100, 100, image=images["main_logo"])
         self.canvas.grid(row=0, column=0, columnspan=3, pady=(0, 20))
@@ -43,17 +40,25 @@ class SecureUI:
         self.website_entry = Entry(width=45, highlightthickness=0, relief="ridge")
         self.website_entry.grid(row=1, column=1, columnspan=2, pady=5, sticky="w")
 
-        Label(text="Email/Username:").grid(row=2, column=0, sticky="e", pady=5, padx=(0, 10))
+        Label(text="Email/Username:").grid(
+            row=2, column=0, sticky="e", pady=5, padx=(0, 10)
+        )
         self.email_entry = Entry(width=45, highlightthickness=0, relief="ridge")
         self.email_entry.grid(row=2, column=1, columnspan=2, pady=5, sticky="n")
 
         Label(text="Password:").grid(row=3, column=0, sticky="e", pady=5, padx=(0, 10))
         self.password_entry = Entry(width=21, highlightthickness=0, relief="ridge")
-        self.password_entry.grid(row=3, column=1, pady=5, sticky="w")
+        self.password_entry.grid(rowcls=3, column=1, pady=5, sticky="w")
 
         # Buttons
-        self.generate_password = Button(text="Generate Password", width=15, highlightthickness=0, relief="ridge")
-        self.generate_password.grid(row=3, column=2, sticky="w",columnspan=2, padx=(0, 2))
+        self.generate_password = Button(
+            text="Generate Password", width=15, highlightthickness=0, relief="ridge"
+        )
+        self.generate_password.grid(
+            row=3, column=2, sticky="w", columnspan=2, padx=(0, 2)
+        )
 
-        self.add_button = Button(text="Add", width=38, highlightthickness=0, relief="ridge")
+        self.add_button = Button(
+            text="Add", width=38, highlightthickness=0, relief="ridge"
+        )
         self.add_button.grid(row=4, column=1, columnspan=2, sticky="w", pady=10)
