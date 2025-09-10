@@ -48,7 +48,7 @@ class SecureUI:
 
         Label(text="Password:").grid(row=3, column=0, sticky="e", pady=5, padx=(0, 10))
         self.password_entry = Entry(width=21, highlightthickness=0, relief="ridge")
-        self.password_entry.grid(rowcls=3, column=1, pady=5, sticky="w")
+        self.password_entry.grid(row=3, column=1, pady=5, sticky="w")
 
         # Buttons
         self.generate_password = Button(
