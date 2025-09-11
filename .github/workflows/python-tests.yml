@@ -45,7 +45,7 @@ jobs:
 
       - name: Run tests
         run: |
-          pytest -v tests/test_main.py
+          pytest -m -v tests/test_main.py
 
   sonar:
     runs-on: ubuntu-latest
