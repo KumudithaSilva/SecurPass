@@ -1,4 +1,4 @@
-from tkinter import Canvas, Label, Entry, Button, Tk, ttk
+from tkinter import Canvas, Label, Entry, Button, Tk
 
 
 class SecureUI:
@@ -39,7 +39,8 @@ class SecureUI:
         Args:
             root (Tk): The main Tkinter window.
             images (dict, optional): Dictionary containing 'main_logo' and 'main_icon'.
-            add_callback (callable, optional): Function to call when Add button is clicked.
+            add_callback (callable, optional): Function to call when
+             Add button is clicked.
         """
         self._root = root
         self._images = images or {}
@@ -63,7 +64,6 @@ class SecureUI:
         self._root.config(padx=40, pady=40, bg=self.BG_COLOR)
         self._root.resizable(False, False)
 
-
         # Set application icon if provided
         if "main_icon" in self._images:
             self._root.iconbitmap(self._images["main_icon"])
@@ -81,7 +81,9 @@ class SecureUI:
         self._canvas.grid(row=0, column=0, columnspan=3, pady=(0, 20))
 
         # Website Entry
-        Label(text="Website:", fg=self.LABEL_FONT_COLOUR, font=self.LABEL_FONT).grid(row=1, column=0, sticky="e", pady=5, padx=(0, 10))
+        Label(text="Website:", fg=self.LABEL_FONT_COLOUR, font=self.LABEL_FONT).grid(
+            row=1, column=0, sticky="e", pady=5, padx=(0, 10)
+        )
         self._website_entry = Entry(
             width=self.FIELD_WIDTH, highlightthickness=0, relief="ridge"
         )
@@ -89,22 +91,29 @@ class SecureUI:
         self._website_entry.focus()  # Focus on website entry initially
 
         # Email Entry
-        Label(text="Email/Username:",fg=self.LABEL_FONT_COLOUR, font=self.LABEL_FONT).grid(
-            row=2, column=0, sticky="e", pady=5, padx=(0, 10)
-        )
+        Label(
+            text="Email/Username:", fg=self.LABEL_FONT_COLOUR, font=self.LABEL_FONT
+        ).grid(row=2, column=0, sticky="e", pady=5, padx=(0, 10))
         self._email_entry = Entry(
             width=self.FIELD_WIDTH, highlightthickness=0, relief="ridge"
         )
         self._email_entry.grid(row=2, column=1, columnspan=2, pady=5, sticky="n")
 
         # Password Entry
-        Label(text="Password:",fg=self.LABEL_FONT_COLOUR, font=self.LABEL_FONT).grid(row=3, column=0, sticky="e", pady=5, padx=(0, 10))
+        Label(text="Password:", fg=self.LABEL_FONT_COLOUR, font=self.LABEL_FONT).grid(
+            row=3, column=0, sticky="e", pady=5, padx=(0, 10)
+        )
         self._password_entry = Entry(width=21, highlightthickness=0, relief="ridge")
         self._password_entry.grid(row=3, column=1, pady=5, sticky="w")
 
         # Generate Password Button
         self._generate_password = Button(
-            text="Generate Password", width=15, highlightthickness=0, relief="ridge", bg=self.PRIMARY_BUTTON_COLOUR, fg=self.FONT_COLOUR,
+            text="Generate Password",
+            width=15,
+            highlightthickness=0,
+            relief="ridge",
+            bg=self.PRIMARY_BUTTON_COLOUR,
+            fg=self.FONT_COLOUR,
         )
         self._generate_password.grid(
             row=3, column=2, sticky="w", columnspan=2, padx=(0, 2)
@@ -117,7 +126,8 @@ class SecureUI:
             highlightthickness=0,
             relief="ridge",
             command=add_callback,
-            bg=self.PRIMARY_BUTTON_COLOUR, fg=self.FONT_COLOUR
+            bg=self.PRIMARY_BUTTON_COLOUR,
+            fg=self.FONT_COLOUR,
         )
         self._add_button.grid(row=4, column=1, columnspan=2, sticky="w", pady=10)
 
