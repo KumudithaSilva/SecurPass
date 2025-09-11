@@ -45,6 +45,7 @@ jobs:
 
       - name: Run tests
         run: |
+          export PYTHONPATH=$PYTHONPATH:$(pwd)
           pytest -m -v tests/test_main.py
 
   sonar:
