@@ -1,10 +1,31 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
 [project]
 name = "SecurPass"
-version = "0.1.0"
+version = "0.1.1-alpha"
+description = "SecurPass — Passowrd Manager App"
 authors = [
-    { name="Kumuitha Silva", email="kumudithasilva66@gmail.com" }
+  { name="Kumuditha Silva", email="kumudithasilva66@gmail.com" }
 ]
-description = "Local password manager and generator built with Python"
+license = { text = "MIT" }
 readme = "README.md"
 requires-python = ">=3.10"
-license = { text = "MIT" }
+dependencies = [
+  "pytest>=7.4.0"
+]
+
+
+[tool.setuptools]
+packages = ["securpass"]
+include-package-data = true
+
+[tool.setuptools.package-data]
+"taskon.assets.images" = ["*.png", "*.ico"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[project.scripts]
+taskon = "securpass.main:main"
