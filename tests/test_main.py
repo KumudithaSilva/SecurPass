@@ -2,6 +2,7 @@ import unittest
 from unittest.mock import MagicMock
 from securpass.data_retrieval import Data_Retrieval
 
+
 class TestDataRetrieval(unittest.TestCase):
     def setUp(self):
         # Create a mock UI
@@ -32,7 +33,10 @@ class TestDataRetrieval(unittest.TestCase):
         self.mock_ui.get_password.return_value = "abc"
         with self.assertRaises(ValueError) as context:
             Data_Retrieval(self.mock_ui).ui_data_retrieval()
-        self.assertEqual(str(context.exception), "Password must be at least 10 characters")
+        self.assertEqual(
+            str(context.exception), "Password must be at least 10 characters"
+        )
+
 
 if __name__ == "__main__":
     unittest.main()
