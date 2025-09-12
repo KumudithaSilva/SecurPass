@@ -68,3 +68,59 @@ jobs:
             -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }}
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+  build:
+    runs-on: windows-latest
+    needs: sonar
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.12.9
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install build pyinstaller
+
+      - name: Build Python package (wheel and sdist)
+        run: python -m build
+
+      - name: Build Windows executable with PyInstaller (include assets)
+        shell: cmd
+        run: |
+          pyinstaller securpass/main.py --onefile --noconsole --name SecurPass --icon=securpass/assets/images/securepass.ico ^
+            --add-data "securpass/assets/images;assets/images"
+
+      - name: Show dist folder contents
+        run: dir dist
+
+      - name: Upload Python package artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: python-package
+          path: dist/*.whl
+
+      - name: Upload Windows executable artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: SecurPass-exe
+          path: dist/SecurPass.exe
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
