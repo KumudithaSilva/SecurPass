@@ -91,7 +91,7 @@ jobs:
       - name: Build Windows executable with PyInstaller (include assets)
         shell: cmd
         run: |
-          pyinstaller securpass/main.py --onefile --noconsole --name SecurPass --icon=securpass/assets/images/securepass.ico ^
+          pyinstaller securpass/main.py --onefile --noconsole --name SecurePass --icon=securpass/assets/images/securepass.ico ^
             --add-data "securpass/assets/images;assets/images"
 
       - name: Show dist folder contents
@@ -106,8 +106,8 @@ jobs:
       - name: Upload Windows executable artifact
         uses: actions/upload-artifact@v4
         with:
-          name: SecurPass-exe
-          path: dist/SecurPass.exe
+          name: SecurePass-exe
+          path: dist/SecurePass.exe
 
 
 

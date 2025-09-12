@@ -25,9 +25,9 @@ class TestDataRetrieval(unittest.TestCase):
         self.assertEqual(data["password"], test_valid_data)
 
     def test_valid_password_length(self):
-        self.mock_ui.get_password.return_value = "abcdefghij@12"
+        self.mock_ui.get_password.return_value = "abcdefghicj@9712"
         data = self.data_retrieval.ui_data_retrieval()
-        self.assertGreater(len(data["password"]), 10)
+        self.assertGreater(len(data["password"]), 15)
 
     def test_password_too_short_raises_error(self):
         self.mock_ui.get_password.return_value = "abc"
