@@ -1,6 +1,9 @@
 from tkinter import Tk
+
+from securpass.SecurePassController import SecurePassController
 from securpass.config import Config
 from securpass.data_retrieval import Data_Retrieval
+from securpass.data_save import Data_Saver
 from securpass.resources import ResourceLoader
 from securpass.ui import SecureUI
 
@@ -13,18 +16,17 @@ def main():
         "main_icon": loader.get_resource_path("securepass.ico"),
     }
 
-    # Load configuration
     config = Config()
-
-    # Initialize UI
     ui = SecureUI(root, images)
-    ui.set_email(config.EMAIL)
 
-    # Initialize data retrieval and attach callback
-    data_retrieval = Data_Retrieval(ui)
-    ui.set_add_callback(data_retrieval.ui_data_retrieval)
+    saver = Data_Saver()
+    retriever = Data_Retrieval(ui)
+
+    SecurePassController(ui, config, saver, retriever)
 
     root.mainloop()
+
+    saver.close()
 
 
 if __name__ == "__main__":

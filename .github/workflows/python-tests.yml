@@ -91,7 +91,7 @@ jobs:
       - name: Build Windows executable with PyInstaller (include assets)
         shell: cmd
         run: |
-          pyinstaller securpass/main.py --onefile --noconsole --name SecurePass --icon=securpass/assets/images/securepass.ico ^
+          pyinstaller securpass/main.py --onefile --noconsole --name SecurePass --icon=securpass/assets/images/securepass_main.ico ^
             --add-data "securpass/assets/images;assets/images"
 
       - name: Show dist folder contents
