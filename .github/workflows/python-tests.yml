@@ -97,6 +97,9 @@ jobs:
       - name: Show dist folder contents
         run: dir dist
 
+      - name: Verify dist folder before upload
+        run: dir dist /b
+
       - name: Upload Python package artifacts
         uses: actions/upload-artifact@v4
         with:
@@ -106,8 +109,8 @@ jobs:
       - name: Upload Windows executable artifact
         uses: actions/upload-artifact@v4
         with:
-          name: SecurPass-exe
-          path: dist/SecurPass.exe
+          name: SecurePass-exe
+          path: dist/*.exe
 
 
 
