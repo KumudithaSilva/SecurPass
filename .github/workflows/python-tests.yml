@@ -97,9 +97,6 @@ jobs:
       - name: Verify dist folder before upload
         run: dir dist
 
-      - name: Verify dist folder before upload
-        run: dir dist /b
-
       - name: Upload Python package artifacts
         uses: actions/upload-artifact@v4
         with:
