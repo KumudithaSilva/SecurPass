@@ -1,7 +1,3 @@
-import csv
-import os.path
-
-
 class Data_Saver:
     """
     Save the entry values to CSV .
@@ -24,11 +20,9 @@ class Data_Saver:
         """
         self.filename = filename
         self.file = open(self.filename, mode="a", newline="", encoding="utf-8")
-        self.writer = csv.DictWriter(self.file, fieldnames=self.HEADERS)
 
-        if os.path.getsize(self.filename) == 0:
-            self.writer.writeheader()
-            self.file.flush()
+        if self.file.tell() == 0:
+            self.file.write(" | ".join(self.HEADERS) + "\n")
 
     # --------------------------
     # Data Save  Methods
@@ -42,7 +36,8 @@ class Data_Saver:
             data (dict): Dictionary containing 'website', 'email', and 'password'.
 
         """
-        self.writer.writerow(data)
+        row = " | ".join(data[h] for h in self.HEADERS)
+        self.file.write(row + "\n")
         self.file.flush()
 
     def close(self):
