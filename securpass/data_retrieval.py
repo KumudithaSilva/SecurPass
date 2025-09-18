@@ -1,4 +1,6 @@
 from securpass.ui import SecureUI
+from securpass.config import Config
+from securpass.messagebox import Messagebox
 
 
 class Data_Retrieval:
@@ -7,17 +9,23 @@ class Data_Retrieval:
 
     Attributes:
         ui: SecurePassUI instance to get entry values.
+        config: Config instance containing default values.
+        message (MessageBox): MessageBox instance to display messages.
 
     """
 
-    def __init__(self, ui: SecureUI):
+    def __init__(self, ui: SecureUI, config: Config, message: Messagebox):
         """
         Initialize the Data_Retrieval.
 
         Args:
             ui: SecurePassUI instance to get entry values.
+            config: Config instance containing default values.
+            message (MessageBox): MessageBox instance to display warnings.
         """
         self.ui = ui
+        self.config = config
+        self.message = message
 
     # --------------------------
     # Data Retrieval  Methods
@@ -29,14 +37,17 @@ class Data_Retrieval:
 
         Returns:
             dict: Dictionary containing 'website', 'email', and 'password' keys.
+
+        Raises:
+            ValueError: If password is less than 10 characters.
         """
         website = self.ui.get_website()
         email = self.ui.get_email()
         password = self.ui.get_password()
 
-        if len(password) < 10:
-            raise ValueError("Password must be at least 10 characters")
+        if len(password) < self.config.MIN_PASSWORD_LENGTH:
+            self.message.show_warn(self.config.MSG_PASSWORD_TOO_SHORT)
+            raise ValueError(self.config.MSG_PASSWORD_TOO_SHORT)
 
         data = {"website": website, "email": email, "password": password}
-        print(data)
         return data
