@@ -1,6 +1,3 @@
-import csv
-import os.path
-
 
 class Data_Saver:
     """
