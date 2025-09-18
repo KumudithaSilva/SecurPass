@@ -1,4 +1,3 @@
-
 class Data_Saver:
     """
     Save the entry values to CSV .
