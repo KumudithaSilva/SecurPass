@@ -32,15 +32,15 @@ class SecureUI:
 
     FIELD_WIDTH = 45
 
-    def __init__(self, root: Tk, images=None, add_callback=None):
+    def __init__(self, root: Tk, images=None, add_callback=None, pass_callback= None):
         """
         Initialize the SecureUI.
 
         Args:
             root (Tk): The main Tkinter window.
             images (dict, optional): Dictionary containing 'main_logo' and 'main_icon'.
-            add_callback (callable, optional): Function to call when
-             Add button is clicked.
+            add_callback (callable, optional): Function to call when Add button is clicked.
+            pass_callback (Callable, optional): Function called when Generate button is clicked.
         """
         self._root = root
         self._images = images or {}
@@ -54,9 +54,15 @@ class SecureUI:
         self._generate_password = None
 
         # Build the UI
-        self._build_ui(add_callback)
+        self._build_ui()
 
-    def _build_ui(self, add_callback):
+        # Wire callbacks after widgets are created
+        if add_callback:
+            self.set_add_callback(add_callback)
+        if pass_callback:
+            self.set_password_callback(pass_callback)
+
+    def _build_ui(self):
         """UI widgets and layout."""
 
         # Window configuration
@@ -103,7 +109,7 @@ class SecureUI:
         Label(text="Password:", fg=self.LABEL_FONT_COLOUR, font=self.LABEL_FONT).grid(
             row=3, column=0, sticky="e", pady=5, padx=(0, 10)
         )
-        self._password_entry = Entry(width=21, highlightthickness=0, relief="ridge")
+        self._password_entry = Entry(width=23, highlightthickness=0, relief="ridge")
         self._password_entry.grid(row=3, column=1, pady=5, sticky="w")
 
         # Generate Password Button
@@ -125,7 +131,6 @@ class SecureUI:
             width=38,
             highlightthickness=0,
             relief="ridge",
-            command=add_callback,
             bg=self.PRIMARY_BUTTON_COLOUR,
             fg=self.FONT_COLOUR,
         )
@@ -172,6 +177,18 @@ class SecureUI:
         Set or update the Add button callback.
 
         Args:
-            callback (callable): Function to call when Add button is clicked.
+            callback (callable): Function to call when the Add button is clicked.
         """
         self._add_button.config(command=callback)
+
+    # -----------------------------
+    # Public method to generate password when button callback dynamically
+    # -----------------------------
+    def set_password_callback(self, callback):
+        """
+        Set or update the Generate button callback.
+
+        Args:
+            callback (callable): Function to call when Generate button is clicked.
+        """
+        self._generate_password.config(command=callback)
