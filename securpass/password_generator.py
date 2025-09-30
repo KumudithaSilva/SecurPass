@@ -18,6 +18,7 @@ class PasswordGenerator:
         numbers_length (int): Number of numbers in the password.
         symbols_length (int): Number of symbols in the password.
     """
+
     def __init__(self, config: Config):
         """
         Initialize the PasswordGenerator with provided configuration.
@@ -34,10 +35,9 @@ class PasswordGenerator:
         self.password: list[str] = []
         self.generated_password: str | None = None
 
-        self.letters_length : int = random.randint(8, 10)
-        self.numbers_length : int = random.randint(2, 4)
-        self.symbols_length : int = random.randint(2, 4)
-
+        self.letters_length: int = random.randint(8, 10)
+        self.numbers_length: int = random.randint(2, 4)
+        self.symbols_length: int = random.randint(2, 4)
 
     # -----------------------------
     # Password Generation  Methods

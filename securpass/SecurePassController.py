@@ -9,7 +9,8 @@ import pyperclip
 
 class SecurePassController:
     """
-    Controller class that connects the UI, password generator, data retrieval, and data saving.
+    Controller class that connects the UI,
+    password generator, data retrieval, and data saving.
 
     Attributes:
         ui: SecureUI instance to interact with the user interface.
@@ -27,7 +28,7 @@ class SecurePassController:
         saver: Data_Saver,
         retriever: Data_Retrieval,
         message: Messagebox,
-        password: PasswordGenerator
+        password: PasswordGenerator,
     ):
         """
         Initialize the SecurePassController.
@@ -45,7 +46,7 @@ class SecurePassController:
         self.saver = saver
         self.retriever = retriever
         self.message = message
-        self.password  = password
+        self.password = password
 
         # Set default email in UI
         self.ui.set_email(self.config.EMAIL)
