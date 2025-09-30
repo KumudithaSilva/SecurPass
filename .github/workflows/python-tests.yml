@@ -61,7 +61,7 @@ jobs:
           python-version: 3.12.9
 
       - name: SonarCloud Scan
-        uses: SonarSource/sonarcloud-github-action@v2.2.0
+        uses: SonarSource/sonarcloud-github-action@4006f66
         with:
           args: >
             -Dsonar.organization=${{ secrets.SONAR_ORGANIZATION }}
