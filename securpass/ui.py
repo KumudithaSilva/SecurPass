@@ -32,7 +32,7 @@ class SecureUI:
 
     FIELD_WIDTH = 45
 
-    def __init__(self, root: Tk, images=None, add_callback=None, pass_callback= None):
+    def __init__(self, root: Tk, images=None, add_callback=None, pass_callback=None):
         """
         Initialize the SecureUI.
 
