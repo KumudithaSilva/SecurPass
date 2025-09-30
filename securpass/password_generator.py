@@ -1,4 +1,4 @@
-import random
+import secrets
 
 from securpass.config import Config
 
@@ -35,9 +35,9 @@ class PasswordGenerator:
         self.password: list[str] = []
         self.generated_password: str | None = None
 
-        self.letters_length: int = random.randint(8, 10)
-        self.numbers_length: int = random.randint(2, 4)
-        self.symbols_length: int = random.randint(2, 4)
+        self.letters_length: int = secrets.choice(range(8, 11))
+        self.numbers_length: int = secrets.choice(range(2, 5))
+        self.symbols_length: int = secrets.choice(range(2, 5))
 
     # -----------------------------
     # Password Generation  Methods
@@ -58,15 +58,18 @@ class PasswordGenerator:
         self.password = []
 
         for char in range(self.letters_length):
-            self.password.append(random.choice(self.letters))
+            self.password.append(secrets.choice(self.letters))
 
         for char in range(self.numbers_length):
-            self.password.append(random.choice(self.numbers))
+            self.password.append(secrets.choice(self.numbers))
 
         for char in range(self.symbols_length):
-            self.password.append(random.choice(self.symbols))
+            self.password.append(secrets.choice(self.symbols))
 
-        random.shuffle(self.password)
+        for i in reversed(range(1, len(self.password))):
+            j = secrets.randbelow(i + 1)
+            self.password[i], self.password[j] = self.password[j], self.password[i]
+
         self.generated_password = "".join(self.password)
 
         return self.generated_password
