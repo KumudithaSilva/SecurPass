@@ -9,10 +9,13 @@ class Config:
         MSG_ENTRY_SAVED (str): Info message when entry is saved.
         MSG_ENTRY_CANCELLED (str): Info message when save is cancelled.
         MSG_CONFIRM_SAVE (str): Confirmation message template.
+        PASS_LETTERS (list): Password Generator letters.
+        PASS_NUMBERS (list): Password Generator numbers.
+        PASS_SYMBOLS (list): Password Generator symbols.
 
     """
 
-    def __init__(self, email="kumudithasilva66@gmail.com", min_password_length=10):
+    def __init__(self, email="kumudithasilva66@gmail.com", min_password_length=8):
         """
         Initialize Config with optional custom details.
 
