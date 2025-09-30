@@ -9,13 +9,10 @@ class Config:
         MSG_ENTRY_SAVED (str): Info message when entry is saved.
         MSG_ENTRY_CANCELLED (str): Info message when save is cancelled.
         MSG_CONFIRM_SAVE (str): Confirmation message template.
-        PASS_LETTERS (list): Password Generator letters.
-        PASS_NUMBERS (list): Password Generator numbers.
-        PASS_SYMBOLS (list): Password Generator symbols.
 
     """
 
-    def __init__(self, email="kumudithasilva66@gmail.com", min_password_length=8):
+    def __init__(self, email="kumudithasilva66@gmail.com", min_password_length=10):
         """
         Initialize Config with optional custom details.
 
@@ -28,59 +25,8 @@ class Config:
         self.MSG_ENTRY_SAVED = "Entry saved successfully."
         self.MSG_ENTRY_CANCELLED = "Save operation cancelled."
         self.MSG_CONFIRM_SAVE = "Do you want to save the entry for: {}?"
-        self.PASS_LETTERS = [
-            "a",
-            "b",
-            "c",
-            "d",
-            "e",
-            "f",
-            "g",
-            "h",
-            "i",
-            "j",
-            "k",
-            "l",
-            "m",
-            "n",
-            "o",
-            "p",
-            "q",
-            "r",
-            "s",
-            "t",
-            "u",
-            "v",
-            "w",
-            "x",
-            "y",
-            "z",
-            "A",
-            "B",
-            "C",
-            "D",
-            "E",
-            "F",
-            "G",
-            "H",
-            "I",
-            "J",
-            "K",
-            "L",
-            "M",
-            "N",
-            "O",
-            "P",
-            "Q",
-            "R",
-            "S",
-            "T",
-            "U",
-            "V",
-            "W",
-            "X",
-            "Y",
-            "Z",
-        ]
-        self.PASS_NUMBERS = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
-        self.PASS_SYMBOLS = ["!", "#", "$", "%", "&", "(", ")", "*", "+"]
+        self.PASS_LETTERS = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q',
+                             'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H',
+                             'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
+        self.PASS_NUMBERS = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+        self.PASS_SYMBOLS = ['!', '#', '$', '%', '&', '(', ')', '*', '+']
