@@ -28,7 +28,6 @@ def main():
     SecurePassController(ui, config, saver, retriever, messagebox, password)
 
     root.mainloop()
-    saver.close()
 
 
 if __name__ == "__main__":
