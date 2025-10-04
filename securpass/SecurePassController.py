@@ -1,4 +1,4 @@
-from securpass.errors import PasswordTooShortError
+from securpass.errors import PasswordTooShortError, EmptyWebsiteError
 from securpass.messagebox import Messagebox
 from securpass.config import Config
 from securpass.data_retrieval import Data_Retrieval
@@ -57,6 +57,10 @@ class SecurePassController:
         self.ui.set_add_callback(self.add_entry)
         self.ui.set_search_callback(self.search_entry)
 
+    # --------------------------
+    # Password Generation Methods
+    # --------------------------
+
     def generate_password(self):
         """
         Generate a strong password, set it in the UI,
@@ -66,22 +70,40 @@ class SecurePassController:
         self.ui.set_password(password)
         pyperclip.copy(password)
 
+    # --------------------------
+    # Data Entry Methods
+    # --------------------------
+
     def add_entry(self):
         """
         Retrieve data from UI entries, confirm saving,
         and save it if approved by the user.
         """
         data = self.retriever.ui_data_retrieval()
-        website = data.get("website", "Unknown")
+        name = data.get("name", "Unknown")
 
-        if self.message.ask_confirmation(self.config.MSG_CONFIRM_SAVE.format(website)):
-            try:
-                self.saver.data_save(data)
-                self.message.show_info(self.config.MSG_ENTRY_SAVED)
-            except PasswordTooShortError:
-                raise PasswordTooShortError(self.config.MSG_PASSWORD_TOO_SHORT)
-        else:
+        existing_data = self.saver.load_existing_data()
+        entry_exists = name in existing_data
+
+        confirm_msg = (
+            self.config.DATA_EXITS.format(name)
+            if entry_exists
+            else self.config.MSG_CONFIRM_SAVE.format(name)
+        )
+        success_msg = (
+            self.config.MSG_ENTRY_UPDATED
+            if entry_exists
+            else self.config.MSG_ENTRY_SAVED
+        )
+
+        if not self.message.ask_confirmation(confirm_msg):
             self.message.show_info(self.config.MSG_ENTRY_CANCELLED)
+            return
+        self._handle_save_with_confirmation(data, success_msg)
+
+    # --------------------------
+    # Data Search Methods
+    # --------------------------
 
     def search_entry(self):
         """
@@ -97,3 +119,23 @@ class SecurePassController:
             self.ui.set_password(entry['password'])
         else:
             self.message.show_info(self.config.NO_ENTRY.format(website_name))
+
+    # --------------------------
+    # Private Helper Method
+    # --------------------------
+
+    def _handle_save_with_confirmation(self, data: dict, success_msg: str):
+        """
+        Try to save the given data and handle known exceptions.
+
+        Args:
+            data (dict): The data to be saved.
+            success_msg (str): Message to display upon successful save.
+        """
+        try:
+            self.saver.data_save(data)
+            self.message.show_info(success_msg)
+        except PasswordTooShortError:
+            raise PasswordTooShortError(self.config.MSG_PASSWORD_TOO_SHORT)
+        except EmptyWebsiteError:
+            raise EmptyWebsiteError(self.config.EMPTY_WEBSITE)
