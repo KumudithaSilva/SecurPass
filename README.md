@@ -65,7 +65,8 @@ The project is architected using **Object-Oriented Programming (OOP)** principle
 
 ## 📸 SecurPass UI Preview  
 
-<img width="370" height="370" alt="image" src="https://github.com/user-attachments/assets/561395eb-92e8-4ed1-be06-858f2b0f8569" />
+<img width="370" height="370" alt="image" src="https://github.com/user-attachments/assets/d3a19224-b6d0-4e6a-baed-0df721f46dc8" />
+
 
 ---
 ## ✨ Features  
