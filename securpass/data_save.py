@@ -1,6 +1,6 @@
 import json
 import os.path
-from errors import DataFileNotFoundError, DataCorruptionError
+from securpass.errors import DataFileNotFoundError, DataCorruptionError
 
 
 class Data_Saver:
