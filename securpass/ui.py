@@ -18,6 +18,7 @@ class SecureUI:
         _email_entry (Entry): Entry widget for email/username.
         _password_entry (Entry): Entry widget for password.
         _add_button (Button): Button to submit the data.
+        _search_button (Button): Button to search the data.
         _generate_password (Button): Button to generate a password.
     """
 
@@ -31,8 +32,16 @@ class SecureUI:
     LABEL_FONT = ("Segoe UI", 10, "bold")
 
     FIELD_WIDTH = 45
+    FIELD_SMALL_WIDTH = 23
 
-    def __init__(self, root: Tk, images=None, add_callback=None, pass_callback=None):
+    def __init__(
+        self,
+        root: Tk,
+        images=None,
+        add_callback=None,
+        search_callback=None,
+        pass_callback=None,
+    ):
         """
         Initialize the SecureUI.
 
@@ -40,6 +49,7 @@ class SecureUI:
             root (Tk): The main Tkinter window.
             images (dict, optional): Dictionary containing 'main_logo' and 'main_icon'.
             add_callback (callable, optional): Function to call when Add button is clicked.
+            search_callback (callable, optional): Function to call when Search button is clicked.
             pass_callback (Callable, optional): Function called when Generate button is clicked.
         """
         self._root = root
@@ -51,6 +61,7 @@ class SecureUI:
         self._email_entry = None
         self._password_entry = None
         self._add_button = None
+        self._search_button = None
         self._generate_password = None
 
         # Build the UI
@@ -59,6 +70,8 @@ class SecureUI:
         # Wire callbacks after widgets are created
         if add_callback:
             self.set_add_callback(add_callback)
+        if search_callback:
+            self.set_search_callback(search_callback)
         if pass_callback:
             self.set_password_callback(pass_callback)
 
@@ -109,7 +122,9 @@ class SecureUI:
         Label(text="Password:", fg=self.LABEL_FONT_COLOUR, font=self.LABEL_FONT).grid(
             row=3, column=0, sticky="e", pady=5, padx=(0, 10)
         )
-        self._password_entry = Entry(width=23, highlightthickness=0, relief="ridge")
+        self._password_entry = Entry(
+            width=self.FIELD_SMALL_WIDTH, highlightthickness=0, relief="ridge"
+        )
         self._password_entry.grid(row=3, column=1, pady=5, sticky="w")
 
         # Generate Password Button
@@ -135,6 +150,17 @@ class SecureUI:
             fg=self.FONT_COLOUR,
         )
         self._add_button.grid(row=4, column=1, columnspan=2, sticky="w", pady=10)
+
+        # Search Button
+        self._search_button = Button(
+            text="Search",
+            width=38,
+            highlightthickness=0,
+            relief="ridge",
+            bg=self.PRIMARY_BUTTON_COLOUR,
+            fg=self.FONT_COLOUR,
+        )
+        self._search_button.grid(row=5, column=1, columnspan=2, sticky="w")
 
     # -----------------------------
     # Public getters
@@ -170,16 +196,28 @@ class SecureUI:
         self._password_entry.insert(0, password)
 
     # -----------------------------
-    # Public method to set button callback dynamically
+    # Public method to set the Add button callback dynamically
     # -----------------------------
     def set_add_callback(self, callback):
         """
         Set or update the Add button callback.
 
         Args:
-            callback (callable): Function to call when the Add button is clicked.
+            callback (callable): Function to call when button is clicked.
         """
         self._add_button.config(command=callback)
+
+    # -----------------------------
+    # Public method to set the Search button callback dynamically
+    # -----------------------------
+    def set_search_callback(self, callback):
+        """
+        Set or update the Search button callback.
+
+        Args:
+            callback (callable): Function to call when button is clicked.
+        """
+        self._search_button.config(command=callback)
 
     # -----------------------------
     # Public method to generate password when button callback dynamically

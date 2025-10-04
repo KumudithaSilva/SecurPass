@@ -33,3 +33,6 @@ class Config:
                              'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
         self.PASS_NUMBERS = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
         self.PASS_SYMBOLS = ['!', '#', '$', '%', '&', '(', ')', '*', '+']
+        self.EMPTY_WEBSITE = "Website field cannot be empty."
+        self.NO_ENTRY = "{} Data Cannot be found."
+        self.DATA_EXITS = "{} Data Already Exists Do You Want to Update It."
