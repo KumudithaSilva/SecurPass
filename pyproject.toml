@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "SecurPass"
-version = "0.1.1-alpha"
+version = "0.1.2"
 description = "SecurPass — Passowrd Manager App"
 authors = [
   { name="Kumuditha Silva", email="kumudithasilva66@gmail.com" }

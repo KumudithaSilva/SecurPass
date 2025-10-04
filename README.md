@@ -8,7 +8,7 @@
 <img src="https://img.shields.io/badge/SOLID-Principles-purple" />
 <img src="https://img.shields.io/badge/Code%20Style-PEP8-yellow" />
 <img src="https://img.shields.io/badge/Maintained-Yes-brightgreen" />
-<img src="https://img.shields.io/badge/Version-0.1.0-blue" />
+<img src="https://img.shields.io/badge/Version-0.1.2-blue" />
 </p>
 
 <hr style="border: 0; border-top: 1px solid #ddd; height: 1px; margin: 8px 0;">
@@ -22,11 +22,11 @@ The project is architected using **Object-Oriented Programming (OOP)** principle
 
 - 🔄 **Adaptive & Reusable** — each component is designed to operate independently, allowing reuse across the application. For example, the password generator and data retrieval modules can be invoked from multiple parts of the program without duplication, ensuring consistency and reducing maintenance overhead.
 
-- 🧩 **Extensible** — the architecture allows new functionalities to be added seamlessly. Features like configurable password complexity, flexible CSV-based data storage, and modular UI controls can be enhanced or expanded without altering existing modules, preserving system stability.
+- 🧩 **Extensible** — the architecture allows new functionalities to be added seamlessly. Features like configurable password complexity, flexible JSON-based data storage, and modular UI controls can be enhanced or expanded without altering existing modules, preserving system stability.
 
 - ✅ **User-Centric Feedback** — the message and alert system guides users in real time, providing validation for missing fields or weak passwords, which improves usability and reduces errors.
 
-- 📂 **Structured Data Handling** — all credentials are stored in a well-organized CSV format, making data retrieval reliable and consistent, while keeping the storage system lightweight.
+- 📂 **Structured Data Handling** — all credentials are stored in a well-organized JSON format, making data retrieval reliable and consistent, while keeping the storage system lightweight.
 
 - ⚙️ **Configurable & Flexible** — system parameters, such as password length and complexity, are centralized in a configuration module, allowing easy adjustments without touching core logic.
 
@@ -68,7 +68,6 @@ The project is architected using **Object-Oriented Programming (OOP)** principle
 <img width="370" height="370" alt="image" src="https://github.com/user-attachments/assets/561395eb-92e8-4ed1-be06-858f2b0f8569" />
 
 ---
-
 ## ✨ Features  
 
 - 🔑 **Password Generator** — Configurable length and complexity.  
@@ -85,7 +84,7 @@ The project is architected using **Object-Oriented Programming (OOP)** principle
 
 1. **Enter Credentials** — Input website, email, and password.  
 2. **Generate Password** — Automatically create a strong password based on configurable criteria (letters, numbers, symbols).  
-3. **Save Credentials** — Validate inputs and store securely in `data.csv`.  
+3. **Save Credentials** — Validate inputs and store securely in `data.json`.  
 4. **Retrieve Passwords** — Search for saved passwords by website for quick access.  
 5. **Receive Feedback** — Alerts notify users of missing, weak, or duplicate passwords to ensure security compliance.  
 
@@ -133,6 +132,9 @@ SecurPass is built with **modular, independent components** following **OOP and 
 - `ui.py`  
   — Constructs the **graphical interface**, managing inputs, buttons, alerts, and overall user experience in a clean, intuitive design.  
 
+- `errors.py`  
+  — Defines **custom exceptions** such as PasswordTooShortError and EmptyWebsiteError to standardize error handling across the project.
+
 Each component is **independent yet cohesive**, making the system **maintainable, testable, and extensible**. The modular design allows **easy updates and feature expansion** without affecting other parts of the application.
  
 
@@ -170,6 +172,7 @@ SecurPass/
 │   ├── messagebox.py                    # Handles user alerts, warnings, and confirmations
 │   ├── config.py                        # Configurable parameters for password rules and system behavior
 │   ├── resources.py                     # Manages static resources like icons/images
+│   ├── errors.py                        # Manages custom exceptions
 │   └── assets/                          # Static files
 │       └── images/                       # Icon/image assets
 │
