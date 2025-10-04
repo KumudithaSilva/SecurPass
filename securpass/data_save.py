@@ -26,6 +26,30 @@ class Data_Saver:
                 json.dump({}, file)
 
     # --------------------------
+    # Data load  Methods
+    # --------------------------
+
+    def load_existing_data(self):
+        """
+        Retrieve existing data from the JSON file.
+
+        Returns:
+            dict: Existing data or empty dict if file not found.
+        """
+        try:
+            with open(self.filename, "r", encoding="utf-8") as file:
+                data = json.load(file)
+                if not isinstance(data, dict):
+                    raise DataCorruptionError(
+                        f"Data file {self.filename} is corrupted."
+                    )
+                return data
+        except FileNotFoundError:
+            return {}
+        except json.JSONDecodeError:
+            raise DataCorruptionError(f"JSON corrupted in {self.filename}")
+
+    # --------------------------
     # Data Save  Methods
     # --------------------------
 
@@ -36,30 +60,16 @@ class Data_Saver:
         Args:
             data (dict): Dictionary containing 'website', 'email', and 'password'.
         """
+        existing_data = self.load_existing_data()
+        website_name = data['name']
+        existing_data[website_name] = {
+            "website": data["website"],
+            "email": data["email"],
+            "password": data["password"],
+        }
         try:
-            with open(self.filename, "r+", encoding="utf-8") as file:
-                try:
-                    existing_data = json.load(file)
-                    if not isinstance(existing_data, dict):
-                        raise DataCorruptionError(
-                            f"Data file {self.filename} is corrupted."
-                        )
-                except json.JSONDecodeError as e:
-                    raise DataCorruptionError(
-                        f"JSON corrupted in {self.filename}"
-                    ) from e
-
-                website_name = data['name']
-                existing_data[website_name] = {
-                    "website": data["website"],
-                    "email": data["email"],
-                    "password": data["password"],
-                }
-
-                file.seek(0)
+            with open(self.filename, "w", encoding="utf-8") as file:
                 json.dump(existing_data, file, indent=4)
-                file.truncate()
-
         except FileNotFoundError as e:
             raise DataFileNotFoundError(f"File not found: {self.filename}") from e
 
@@ -75,17 +85,8 @@ class Data_Saver:
             dict: Dictionary containing 'website', 'email', and 'password' keys.
         """
         try:
-            with open(self.filename, "r", encoding="utf-8") as file:
-                try:
-                    data = json.load(file)
-                    if not isinstance(data, dict):
-                        raise DataCorruptionError(
-                            f"Data file {self.filename} is corrupted."
-                        )
-                    return data
-                except json.JSONDecodeError as e:
-                    raise DataCorruptionError(
-                        f"JSON corrupted in {self.filename}"
-                    ) from e
-        except FileNotFoundError as e:
+            return self.load_existing_data()
+        except DataFileNotFoundError as e:
             raise DataFileNotFoundError(f"File not found: {self.filename}") from e
+        except DataCorruptionError as e:
+            raise DataCorruptionError(f"Error reading data from {self.filename}") from e

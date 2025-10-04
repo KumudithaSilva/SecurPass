@@ -36,3 +36,4 @@ class Config:
         self.EMPTY_WEBSITE = "Website field cannot be empty."
         self.NO_ENTRY = "{} Data Cannot be found."
         self.DATA_EXITS = "{} Data Already Exists Do You Want to Update It."
+        self.MSG_ENTRY_UPDATED = "Entry updated successfully."
