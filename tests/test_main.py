@@ -2,6 +2,7 @@ import unittest
 from unittest.mock import MagicMock
 from securpass.data_retrieval import Data_Retrieval
 from securpass.config import Config
+from securpass.errors import PasswordTooShortError
 from securpass.messagebox import Messagebox
 
 
@@ -47,7 +48,7 @@ class TestDataRetrieval(unittest.TestCase):
 
     def test_password_too_short_raises_error(self):
         self.mock_ui.get_password.return_value = "abc"
-        with self.assertRaises(ValueError) as context:
+        with self.assertRaises(PasswordTooShortError) as context:
             self.data_retrieval.ui_data_retrieval()
         self.assertEqual(
             str(context.exception), "Password must be at least 10 characters"
@@ -55,7 +56,7 @@ class TestDataRetrieval(unittest.TestCase):
 
     def test_password_too_short_shows_messagebox(self):
         self.mock_ui.get_password.return_value = "abc"
-        with self.assertRaises(ValueError):
+        with self.assertRaises(PasswordTooShortError):
             self.data_retrieval.ui_data_retrieval()
         self.mock_message.show_warn.assert_called_once_with(
             "Password must be at least 10 characters"
